@@ -1,0 +1,5 @@
+Python'da integer, boolean, string vb. veri tipleri bulunmaktadır. Bunlara genel olarak bakacak olursak da; text içerikler için string, numeric içerikler için integer ve koşul içerikler içinse boolean kullanılır.
+
+İlk soruda da belirttiğim üzere kodlamaio inetrnet sitesinde text veriler için string ve numeric içerikler için integer vb. kullanılmıştır.
+
+Kodlamaio internet sitesinden örnek vermek gerekirse "Ödevin yüzde şu kadarı tamamlandı" diye gösterilen alanda şartlar oluşturulmuş ve meydana gelen duruma göre sonuçlar gösterilmektedir.
