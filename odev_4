@@ -1,0 +1,91 @@
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+from time import sleep
+from selenium.webdriver.common.by import By
+
+class New_Test:
+    def no_entry(self) :
+        driver = webdriver.Chrome(ChromeDriverManager().install())
+        driver.get("https://www.saucedemo.com/")
+        sleep(3)
+        isim_giris = driver.find_element(By.ID,"user-name")
+        sifre_giris = driver.find_element(By.ID,"password")
+        sleep(3)
+        isim_giris.send_keys("")
+        sifre_giris.send_keys("")
+        sleep(3)
+        loginbutton = driver.find_element(By.ID,"login-button")
+        sleep(3)
+        loginbutton.click()
+
+        hatamesaji = driver.find_element(By.XPATH,"//*[@id='login_button_container']/div/form/div[3]/h3")
+        testsonuc = hatamesaji.text == "Epic sadface: Username is required"
+        print(f"Test result : {testsonuc}")
+        sleep(5)
+
+    def sifreyok (self) :
+        driver = webdriver.Chrome(ChromeDriverManager().install())
+        driver.get("https://www.saucedemo.com/")
+        sleep(3)
+        isimgir = driver.find_element(By.ID,"user-name")
+        sifregir = driver.find_element(By.ID,"password")
+        sleep(3)
+
+        isimgir.send_keys("mehmet")
+        sifregir.send_keys("")
+        sleep(3)
+        loginbutonu = driver.find_element(By.ID,"login-button")
+        sleep(3)
+
+        loginbutonu.click()
+
+        hatames = driver.find_element(By.XPATH,"//*[@id='login_button_container']/div/form/div[3]/h3")
+        testson = hatames.text == "Epic sadface: Password is required"
+        print(f"Test result : {hatames}")
+        sleep(5)
+    
+    def kilitli_user(self):
+        driver = webdriver.Chrome(ChromeDriverManager().install())
+        driver.get("https://www.saucedemo.com/")
+        sleep(3)
+        kuladı = driver.find_element(By.ID,"user-name")
+        sifre = driver.find_element(By.ID,"password")
+        sleep(3)
+        kuladı.send_keys("locked_out_user")
+        sifre.send_keys("secret_sauce")
+        sleep(3)
+
+        girisbutonu = driver.find_element(By.ID,"login-button")
+        sleep(3)
+        girisbutonu.click()
+        hatmes = driver.find_element(By.XPATH,"//*[@id='login_button_container']/div/form/div[3]/h3")
+        sonuc = hatmes.text == "Epic sadface: Sorry, this user has been locked out."
+        print(f"Test result : {hatmes}")
+        sleep(5)
+
+    def urun_sayisi (self) :
+        driver = webdriver.Chrome(ChromeDriverManager().install())
+        driver.get("https://www.saucedemo.com/")
+        sleep(3)
+        kulgir = driver.find_element(By.ID,"user-name")
+        sifre = driver.find_element(By.ID,"password")
+        sleep(3)
+        kulgir.send_keys("standard_user")
+        sifre.send_keys("secret_sauce")
+        sleep(3)
+        loginbutton = driver.find_element(By.ID,"login-button")
+        sleep(3)
+
+        loginbutton.click()
+        driver.get("https://www.saucedemo.com/inventory.html")
+        sleep(5)
+
+        urun = driver.find_elements(By.CLASS_NAME,"inventory_item")
+        print(f"Şu an toplamda {len(urun)} tane ürün mevcuttur.")
+
+
+testClass = New_Test ()
+testClass.no_entry ()
+testClass.sifreyok ()
+testClass.kilitli_user ()
+testClass.urun_sayisi ()
